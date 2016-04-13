@@ -1,6 +1,8 @@
 package rmi;
 
 import java.rmi.RemoteException;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 import rmi.shared.Circle;
 import rmi.shared.CircleRemote;
@@ -19,9 +21,9 @@ host, port
 UnicastRemoteObject ->  összefoglal metódust amire amúgyis szükségünk van
                         Nélküle is lehet rmi szervert irni, csak több meló
 
+1099-es port: alapértelmezett registry port
+
 */
-
-
 
 public class Server 
         extends UnicastRemoteObject 
@@ -37,6 +39,17 @@ public class Server
         return c.getC();
     }
     
+    public static void main(String[] args) throws RemoteException {
+        Server server = new Server();
+        Registry reg = LocateRegistry.createRegistry(1099);
+        //bejegyezzük a szerver objektumot a registrybe
+        reg.rebind("myserver", server);
+        /*
+        bind-> ha már létezik olyan akkor AlreadyBoundEx.-t dob
+        rebind-> ez felülirja a létező registryt
+        */
+        System.out.println("A szerver elindult.");
+    }
     
     
 }
