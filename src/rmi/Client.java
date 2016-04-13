@@ -8,6 +8,7 @@ import java.rmi.registry.Registry;
 import rmi.shared.Circle;
 import rmi.shared.CircleRemote;
 import rmi.shared.Point;
+import rmi.shared.ProcessString;
 
 public class Client {
     
@@ -19,6 +20,11 @@ public class Client {
         Circle c = new Circle(new Point(1, 2), 3);
         double cir = cr.getC(c);
         System.out.println("A " + c + " kor kerulete: " + cir);
+        
+        ProcessString ps = (ProcessString) stub;
+        String s = "abcdefghijk";
+        String rev = ps.process(s);
+        System.out.println(s + " -> " + rev);
         
     }
     

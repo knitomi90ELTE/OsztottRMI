@@ -6,6 +6,7 @@ import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 import rmi.shared.Circle;
 import rmi.shared.CircleRemote;
+import rmi.shared.ProcessString;
 
 /*
 RMI szerver azonostása:
@@ -27,7 +28,7 @@ UnicastRemoteObject ->  összefoglal metódust amire amúgyis szükségünk van
 
 public class Server 
         extends UnicastRemoteObject 
-        implements CircleRemote {
+        implements CircleRemote, ProcessString {
 
     public Server() throws RemoteException {
         super();
@@ -37,6 +38,11 @@ public class Server
     @Override
     public double getC(Circle c) throws RemoteException {
         return c.getC();
+    }
+    
+    @Override
+    public String process(String s) throws RemoteException {
+        return new StringBuilder(s).reverse().toString();
     }
     
     public static void main(String[] args) throws RemoteException {
@@ -50,6 +56,8 @@ public class Server
         */
         System.out.println("A szerver elindult.");
     }
+
+    
     
     
 }
