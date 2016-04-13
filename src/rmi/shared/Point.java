@@ -3,7 +3,9 @@ package rmi.shared;
 import java.io.Serializable;
 
 public class Point implements Serializable {
-
+    
+    public long serialVersionUID = 12345L;
+    
     private int x;
     private int y;
 

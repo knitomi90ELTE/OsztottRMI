@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class Circle implements Serializable {
 
-    public long serialVersionUID = 123456;
+    public long serialVersionUID = 12345L;
     private Point cp;
     private int r;
     private transient Double c = null;

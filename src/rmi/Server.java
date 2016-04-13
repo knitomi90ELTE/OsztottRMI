@@ -47,7 +47,8 @@ public class Server
     
     public static void main(String[] args) throws RemoteException {
         Server server = new Server();
-        Registry reg = LocateRegistry.createRegistry(1099);
+        //Registry reg = LocateRegistry.createRegistry(1099);
+        Registry reg = LocateRegistry.getRegistry();//kivulröl elinditott registry
         //bejegyezzük a szerver objektumot a registrybe
         reg.rebind("myserver", server);
         /*
